@@ -37,6 +37,7 @@ export default class App extends Component {
   }
 
   buttonPressed(text){
+    
     if(text == '='){
       return this.validade() && this.calculateResult()
     }
@@ -47,14 +48,16 @@ export default class App extends Component {
   }
 
   operate(operation){
+    
     // Aditional code to make calculator work more like one
-    if(this.state.resultText == "" && ( operation == '*' || operation == '/')) return // stops invalid imputs such as *9+2 or /8+3*2
+    if(this.state.resultText == "" && ( operation == '*' || operation == '/')) return // stops invalid imputs such as *9+2 or /8+3*2 but accepts -3*2=-6
     if(this.state.resultText == "" && operation == 'DEL'){ // when you delete everything from calculation the result is empty as well
       this.setState({
         calculationText: ""
       })
       return
     }
+    
     switch(operation){
       case 'DEL':
         const text = this.state.resultText.split('')
@@ -71,7 +74,7 @@ export default class App extends Component {
 
         if(this.operations.indexOf(lastChar) > 0) return
 
-        if(this.state.text == "") return
+        //if(this.state.resultText == "") return
 
         this.setState({
           resultText: this.state.resultText + operation
@@ -160,11 +163,11 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   resultText: {
-    fontSize: 40,
+    fontSize: 50,
     color: 'black'
   },
   calculationText: {
-    fontSize: 25,
+    fontSize: 30,
     color: 'black'
   },
   button: {
